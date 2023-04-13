@@ -5,28 +5,33 @@ import {
     validateFxn,
 } from './helpers.js';
 
-function alternatingCharacters(s: string): number {
-    let sortedAArray = s.split('');
-    let counter = 0;
+function exists(arr, search) {
+    return arr.some((row) => row.includes(search));
+}
 
-    for (let i = 0; i < sortedAArray.length + 1; i++) {
-        if (sortedAArray[i] === sortedAArray[i + 1]) {
-            counter++;
+function isValid(s: string): string {
+    let stringArray = s.split('');
+    let resultsArray = [];
+
+    for (let i = 0; i < stringArray.length + 1; i++) {
+        let holder = resultsArray.find((x) => x.key === stringArray[i]);
+
+        if (!holder) {
+            resultsArray.push({ key: stringArray[i], count: 1 });
+        } else {
+            holder.count = holder.count + 1;
         }
     }
 
-    if (counter > 0) {
-        counter--;
-    }
+    const holder2 = resultsArray;
 
-    return counter;
+    return 'YES';
 }
 
 consoleStart();
 
-validateFxn(alternatingCharacters('AAAA'), 3);
-validateFxn(alternatingCharacters('BBBBB'), 4);
-validateFxn(alternatingCharacters('ABABABAB'), 0);
+validateFxn(isValid('aabbcd'), 'NO');
+validateFxn(isValid('abcdefghhgfedecba'), 'YES');
 
 consoleEnd();
 consoleBuffer();
