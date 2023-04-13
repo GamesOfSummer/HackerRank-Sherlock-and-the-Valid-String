@@ -19,7 +19,7 @@ export const consoleBuffer = () => {
 };
 
 export const validateFxn = (output: any, answer: any) => {
-    console.log('\x1b[36m%s\x1b[0m', '🛠 Testing function...');
+    //console.log('\x1b[36m%s\x1b[0m', '🛠 Testing function...');
 
     if (
         Array.isArray(output) &&
@@ -39,5 +39,5 @@ export const validateFxn = (output: any, answer: any) => {
         );
     }
 
-    console.log();
+    //console.log();
 };
