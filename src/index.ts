@@ -25,7 +25,19 @@ function isValid(s: string): string {
 
     const holder2 = resultsArray;
 
-    return 'YES';
+    let lastValue = 0;
+    let brokenOrder = 0;
+    for (let i = 0; i < resultsArray.length; i++) {
+        if (
+            resultsArray[i + 1] &&
+            resultsArray[i].count !== resultsArray[i + 1].count
+        ) {
+            i++;
+            brokenOrder++;
+        }
+    }
+    const holder3 = brokenOrder;
+    return brokenOrder > 1 ? 'YES' : 'NO';
 }
 
 consoleStart();
