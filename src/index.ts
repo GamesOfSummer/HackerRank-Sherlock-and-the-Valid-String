@@ -39,11 +39,18 @@ function isValid(s: string): string {
     }
 
     //********scan array */
+    if (changedAmountsArray.length >= 3) {
+        return 'NO';
+    }
+
     if (changedAmountsArray.length >= 2) {
         if (
             changedAmountsArray[0].count > 1 &&
             changedAmountsArray[1].count > 1
         )
+            return 'NO';
+
+        if (changedAmountsArray[0].key > 1 && changedAmountsArray[1].count > 1)
             return 'NO';
     }
 
@@ -73,10 +80,13 @@ function isValid(s: string): string {
 
 consoleStart();
 
+validateFxn(isValid('aaaaabc'), 'NO');
+validateFxn(isValid('abcdefghhgfedecba'), 'YES');
+
+validateFxn(isValid('abbccc'), 'NO');
 validateFxn(isValid('aabbccddeefghi'), 'NO');
 validateFxn(isValid('aabbcd'), 'NO');
 
-validateFxn(isValid('abcdefghhgfedecba'), 'YES');
 validateFxn(isValid('aac'), 'YES');
 validateFxn(isValid('aabbc'), 'YES');
 
