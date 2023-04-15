@@ -5,10 +5,6 @@ import {
     validateFxn,
 } from './helpers.js';
 
-function exists(arr, search) {
-    return arr.some((row) => row.includes(search));
-}
-
 function isValid(s: string): string {
     let stringArray = s.split('');
 
@@ -28,7 +24,30 @@ function isValid(s: string): string {
         }
     }
 
-    const holder2 = resultsArray;
+    //****************** */
+    // check for aabbccddeefghi
+    let changedAmountsArray = [];
+    for (let i = 0; i < resultsArray.length; i++) {
+        let holder2 = changedAmountsArray.find(
+            (x) => x.key === resultsArray[i].count
+        );
+        if (!holder2) {
+            changedAmountsArray.push({ key: resultsArray[i].count, count: 1 });
+        } else {
+            holder2.count = holder2.count + 1;
+        }
+    }
+
+    //********scan array */
+    if (changedAmountsArray.length >= 2) {
+        if (
+            changedAmountsArray[0].count > 1 &&
+            changedAmountsArray[1].count > 1
+        )
+            return 'NO';
+    }
+
+    //****************** */
 
     let lastValue = 0;
     let brokenOrder = 0;
@@ -47,6 +66,7 @@ function isValid(s: string): string {
             brokenOrder++;
         }
     }
+
     const holder3 = brokenOrder;
     return brokenOrder <= 1 ? 'YES' : 'NO';
 }
